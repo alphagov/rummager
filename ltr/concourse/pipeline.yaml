@@ -109,6 +109,13 @@ jobs:
       trigger: true
     - get: search-api-git
     - task: fetch
+      ensure:
+        params:
+          GOVUK_ENVIRONMENT: integration
+          ROLE_ARN: ((integration-role-arn))
+        run:
+          path: bash
+          args: ["search-api-git/ltr/concourse/after-fetch.sh"]
       config:
         <<: *task-config
         inputs:
@@ -180,6 +187,13 @@ jobs:
       trigger: true
     - get: search-api-git
     - task: fetch
+      ensure:
+        params:
+          GOVUK_ENVIRONMENT: staging
+          ROLE_ARN: ((staging-role-arn))
+        run:
+          path: bash
+          args: ["search-api-git/ltr/concourse/after-fetch.sh"]
       config:
         <<: *task-config
         inputs:
@@ -251,6 +265,13 @@ jobs:
       trigger: true
     - get: search-api-git
     - task: fetch
+      ensure:
+        params:
+          GOVUK_ENVIRONMENT: production
+          ROLE_ARN: ((production-role-arn))
+        run:
+          path: bash
+          args: ["search-api-git/ltr/concourse/after-fetch.sh"]
       config:
         <<: *task-config
         inputs:

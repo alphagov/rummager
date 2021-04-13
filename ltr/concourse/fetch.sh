@@ -77,14 +77,4 @@ ssh -i /tmp/concourse_ssh_key -o StrictHostKeyChecking=no "ubuntu@${instance_ip}
   aws s3 cp svm/validate.txt s3://$S3_BUCKET/data/$NOW/validate.txt
 EOF
 
-# the previous assumption may have timed out, so assume again before
-# scaling down the ASG
-assume_role
-
-echo "Scaling down ASG..."
-aws autoscaling set-desired-capacity \
-    --region "$AWS_REGION" \
-    --auto-scaling-group-name "$EC2_NAME" \
-    --desired-capacity 0
-
 echo "$NOW" > "out/${GOVUK_ENVIRONMENT}-${OUTPUT_FILE_NAME}-$(date +%s).txt"
