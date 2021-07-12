@@ -107,7 +107,7 @@ GEM
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.4.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_document_types (1.0.0)
+    govuk_document_types (1.0.1)
     govuk_message_queue_consumer (3.5.0)
       bunny (~> 2.11)
     govuk_schemas (4.3.0)
